@@ -8,3 +8,16 @@ before_install:
 
 script: 
   - docker run -e CI=true gansiz/docker-react npm run test
+
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "frontend"
+  env: "Frontend-env"
+  bucket_name: "	elasticbeanstalk-us-east-1-992382362584"
+  bucket_path: "frontend"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_key_id: "$AWS_SECRET_KEY"
